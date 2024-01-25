@@ -1,0 +1,67 @@
+﻿@page "/"
+@inject SheduleHubContext context
+@inject NavigationManager NavigationManager
+@inject UserService UserService
+@using Microsoft.EntityFrameworkCore;
+
+<body>
+    <div class="main">
+        <div class="up">
+            <img class="logo" src="./icons/logo.svg" alt="">
+        </div>
+        <div class="down">
+            <div class="window">
+                <p class="enter-text">Вход</p>
+                <div class="inputs">
+                    <input class="input" type="text" placeholder="Email" @bind-value="Email">
+                    <input class="input" type="password" placeholder="Пароль" @bind-value="Password">
+                </div>
+                <div class="forgot">
+                    <a href="/forgot">@Result</a>
+                </div>
+                <div class="enter-button">
+                    <button class="button" @onclick="HandleLogin">Войти</button>
+                    <a href="/reg">Нет Аккаунта? <span class="purple">Создайте!</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@code {
+    string? Email { get; set; }
+    string? Password { get; set; }
+    string? Result { get; set; }
+    int StudentId;
+
+    private async Task HandleLogin()
+    {
+        Result = null;
+        if (Email is null || Password is null)
+        {
+            Result = "Введите данные";
+            return;
+        }
+
+        List<Student> students = new List<Student>();
+        students = await context.Students.ToListAsync();
+        foreach (var student in students)
+        {
+            if (Email == student.Email && Password == student.Pssword)
+            {
+                Console.WriteLine($"Пользователь {student.IdStudent} авторизовался");
+                UserService.UserId = student.IdStudent;
+                NavigationManager.NavigateTo("/person");
+                return;
+            }
+            else if (Email == student.Email && Password != student.Pssword)
+            {
+                Console.WriteLine("Неправильный пароль");
+                Result = "Забыли пароль?";
+                return;
+            }
+        }
+        Console.WriteLine("Пользователь не зарегистрирован");
+        Result = "Пользователь не зарегистрирован";
+    }
+}

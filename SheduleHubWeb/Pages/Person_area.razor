@@ -1,0 +1,173 @@
+@page "/person"
+@inject UserService UserService
+@inject SheduleHubContext context
+@using Microsoft.EntityFrameworkCore;
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="css/personalArea.css">
+</head>
+<body>
+    <div class ="main">
+        <div class="logo">
+            <img class="logo" src="./icons/logo.svg" alt="">
+        </div>
+        <div class="block1">
+            <p><b>Личный кабинет</b></p>
+        </div>
+        
+        <div class="block2">
+            <div class="avatarBox">
+                <div class="avatar">
+                    @if (student != null)
+                    {
+                        <p class="initial">@student.NameFirst.Substring(0, 1)@student.Surname.Substring(0, 1)</p>
+                    }
+                </div>
+            </div>
+            <div class="info">
+                <div class="name">
+                    @if (student != null)
+                    {
+                        <a>@student.Surname @student.NameFirst @student.Patronymic</a>
+                    }
+                </div>
+                <div class="status">
+                    <div class="role">
+                        @if (student != null)
+                        {
+                            <a>@role</a>
+                        }
+                    </div>
+                    <div class="group">
+                        @if (student != null)
+                        {
+                            <a>@group</a>
+                        } 
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (role == "Администратор")
+        {
+            <div class="block3">
+                <div class="title">
+                    <a><b>Панель Администратора</b></a>
+                </div>
+                <div style="padding-left: 5px">
+                    <div class="admin">
+                        <div class="menu">
+                            <div class="icon">
+                                <img src="./icons/shedule.svg" alt="">
+                            </div>
+                            Изменить расписание
+                        </div>
+                        <div class="menu">
+                            <div class="icon">
+                                <img src="./icons/homework.svg" alt="">
+                            </div>
+                            Добавить домашнее задание
+                        </div>
+                        <div class="menu">
+                            <div class="icon">
+                                <img src="./icons/duty.svg" alt="">
+                            </div>
+                            Назначить дежурных
+                        </div>
+                        <div class="menu">
+                            <div class="icon">
+                                <img src="./icons/notification.svg" alt="">
+                            </div>
+                            Создать уведомление
+                        </div>
+                        <a href="/person/list-group">
+                        <div class="menu">
+                            <div class="icon">
+                                <img src="./icons/list.svg" alt="">
+                            </div>
+                            Список группы
+                        </div>
+                        </a>
+                    </div>
+                </div>          
+            </div>
+        }
+        <div class="block4">
+            <div class="title">
+                <a><b>Панель cтудента</b></a>
+            </div>
+            <div style="padding-left: 5px">
+                <div class="student">
+                <div class="menu">
+                    <div class="icon">
+                        <img src="./icons/edit.svg" alt="">
+                    </div>
+                    Редактировать данные аккаунта
+                </div>
+                <div class="menu">
+                    <div class="icon">
+                        <img src="./icons/notifications.svg" alt="">
+                    </div>
+                    Просмотреть уведомления
+                </div>
+                <div class="menu">
+                    <div class="icon">
+                        <img src="./icons/portfolio.svg" alt="">
+                    </div>
+                    Загрузить файлы в портфолио
+                </div>
+                <div class="menu">
+                    <div class="icon">
+                        <img src="./icons/messages.svg" alt="">
+                    </div>
+                    Проверить сообщения
+                </div>
+                <div class="menu">
+                    <div class="icon">
+                        <img src="./icons/settings.svg" alt="">
+                    </div>
+                    Настройки приложения
+                </div>
+            </div>
+            </div>      
+        </div>
+        <div class="block5">
+            <a href="/">
+                <div class="out">
+                    Выйти
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+
+@code {
+    List<Student> students = new List<Student>();
+    Student student;
+    List<StudentRole> roles = new List<StudentRole>();
+    string? role;
+    List<StudentGroup> groups = new List<StudentGroup>();
+    string? group;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(UserService.UserId.ToString());
+        students = context.Students.ToList();
+        student = students.FirstOrDefault(s => s.IdStudent == UserService.UserId);
+        if (student == null)
+        {
+            Console.WriteLine("Student not found");
+            return;
+        }
+        else
+        {
+            Console.WriteLine($"Found student with Id: {student.IdStudent}");
+        }
+        roles = context.StudentRoles.ToList();
+        role = roles.FirstOrDefault(r => r.IdRole == student.IdRole).NameRole;
+        groups = context.StudentGroups.ToList();
+        group = groups.FirstOrDefault(g => g.IdGroup == student.IdGroup).NameGroup;
+    }
+}

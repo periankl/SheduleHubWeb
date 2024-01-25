@@ -1,0 +1,93 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\css\\enter.css",
+      "PackagePath": "staticwebassets\\css\\enter.css"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\css\\list_group.css",
+      "PackagePath": "staticwebassets\\css\\list_group.css"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\css\\personalArea.css",
+      "PackagePath": "staticwebassets\\css\\personalArea.css"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\css\\registration.css",
+      "PackagePath": "staticwebassets\\css\\registration.css"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\duty.svg",
+      "PackagePath": "staticwebassets\\icons\\duty.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\edit.svg",
+      "PackagePath": "staticwebassets\\icons\\edit.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\homework.svg",
+      "PackagePath": "staticwebassets\\icons\\homework.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\list.png",
+      "PackagePath": "staticwebassets\\icons\\list.png"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\list.svg",
+      "PackagePath": "staticwebassets\\icons\\list.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\logo.svg",
+      "PackagePath": "staticwebassets\\icons\\logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\messages.svg",
+      "PackagePath": "staticwebassets\\icons\\messages.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\notification.svg",
+      "PackagePath": "staticwebassets\\icons\\notification.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\notifications.png",
+      "PackagePath": "staticwebassets\\icons\\notifications.png"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\notifications.svg",
+      "PackagePath": "staticwebassets\\icons\\notifications.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\portfolio.svg",
+      "PackagePath": "staticwebassets\\icons\\portfolio.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\settings.svg",
+      "PackagePath": "staticwebassets\\icons\\settings.svg"
+    },
+    {
+      "Id": "C:\\Users\\dshin\\OneDrive\\Рабочий стол\\SheduleHubWeb\\SheduleHubWeb\\wwwroot\\icons\\shedule.svg",
+      "PackagePath": "staticwebassets\\icons\\shedule.svg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.SheduleHubWeb.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.SheduleHubWeb.props",
+      "PackagePath": "build\\SheduleHubWeb.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.SheduleHubWeb.props",
+      "PackagePath": "buildMultiTargeting\\SheduleHubWeb.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.SheduleHubWeb.props",
+      "PackagePath": "buildTransitive\\SheduleHubWeb.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

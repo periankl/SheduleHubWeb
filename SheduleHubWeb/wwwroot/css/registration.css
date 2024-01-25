@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+body {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+.main{
+    width: 375px;
+    height: 812px;
+    background: linear-gradient(180deg, #0074FF -46.49%, #A3CDFF 100%);
+    display: flex;
+    flex-direction: column;
+}
+.up{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 15%;
+}
+.down{
+    width: 100%;
+    height: 55%;
+    display: flex;
+    justify-content: center;
+}
+.logo{
+    width: 239px;
+    height: 28px;
+}
+.window{
+    width: 280px;
+    height: 330px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.window2{
+    width: 280px;
+    height: 290px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.window3{
+    width: 280px;
+    height: 220px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.window4{
+    width: 280px;
+    height: 220px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.enter-text{
+    font-size: 20px;
+    text-align: center;
+}
+.inputs{
+    width: 100%;
+    height: 120%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.input{
+    width: 250px;
+    height: 30px;
+    background-color: #D9D9D9;
+    border: 0cm;
+    border-radius: 4px;
+}
+.enter-button{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    font-size: 15px;
+
+}
+.button{
+    width: 147px;
+    height: 36px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 0cm;
+    background: #2688EB;
+    border-radius: 6px;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.button2{
+    width: 147px;
+    height: 36px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 0cm;
+    background: #2688EB;
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.button:active {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+    background: #1b5da0;
+}
+.date{
+    height: 30px;
+    width: 250px;
+    background-color: #D9D9D9;
+    border: 0cm;
+    border-radius: 4px;
+    text-align: center;
+}
+.dateBirth{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    
+}
+
+.blue{
+    width: 100%;
+    height: 100%;
+    font-size: smaller;
+    color: #0074FF;
+    margin-right: 15px;
+}
+.create{
+    width: 265px;
+    height: 160px;
+    text-align: right;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.forgot{
+    font-size: 12px;
+    color: #FF6060;
+    text-align: right;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-right: 15px;
+}

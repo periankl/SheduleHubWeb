@@ -1,0 +1,121 @@
+@page "/person/list-group"
+@inject UserService UserService
+@using Microsoft.EntityFrameworkCore;
+@inject SheduleHubContext context
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Список группы</title>
+	<link rel="stylesheet" href="css/list_group.css">
+</head>
+<body>
+	<div class="main">
+		<div class="up2">
+			<div class="logo">
+				<img class="logo" src="./icons/logo.svg" alt="">
+			</div>
+			<div class="block1">
+				<p><b>Список группы @group</b></p>
+			</div>
+		</div>
+		<div class="GroupList">
+			@foreach (var student in students)
+			{
+				var role = roles.FirstOrDefault(r => r.IdRole == student.IdRole);
+				<div class="block2">
+					<div class="avatarBox">
+						<div class="avatar" style="background-color: @colours[rnd.Next(0,8)]">
+							@if (student != null)
+							{
+								<p class="initial">@student.NameFirst.Substring(0, 1)@student.Surname.Substring(0, 1)</p>
+							}
+						</div>
+					</div>
+					<div class="info">
+						<div class="name">
+							@if (student != null)
+							{
+								<a>@student.Surname @student.NameFirst @student.Patronymic</a>
+							}
+						</div>
+						<div class="status">
+							@switch (role.IdRole)
+							{
+								case 1:
+									<div class="role" style = "background-color: #D9D9D9">
+										@if (student != null)
+										{
+											<a>@role.NameRole</a>
+										}
+									</div>
+									break;
+								case 2:
+                                    <div class="role" style = "background-color: #FFC266">
+										@if (student != null)
+										{
+											<a>@role.NameRole</a>
+										}
+									</div>
+									break;
+								case 3:
+                                    <div class="role" style = "background-color: #00FFC2">
+										@if (student != null)
+										{
+											<a>@role.NameRole</a>
+										}
+									</div>
+									break;
+								case 4:
+                                    <div class="role" style = "background-color: #A3CDFF">
+										@if (student != null)
+										{
+											<a>@role.NameRole</a>
+										}
+									</div>
+									break;
+							}
+
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</body>
+
+
+
+
+
+@code {
+	Random rnd = new Random();
+	List<Student> students = new List<Student>();
+	List<StudentGroup> groups = new List<StudentGroup>();
+	List<StudentRole> roles = new List<StudentRole>();
+	Student student;
+	string group;
+
+	List<string> colours = new List<string>()
+	{
+		"#ff4845",
+		"#ff7d45",
+		"#ffdd45",
+		"#45ff58",
+		"#45ffc4",
+		"#45a8ff",
+		"#6745ff",
+		"#dd45ff"
+	};
+
+	protected async override Task OnInitializedAsync()
+	{
+		students = await context.Students.ToListAsync();
+		groups = await context.StudentGroups.ToListAsync();
+		roles = await context.StudentRoles.ToListAsync();
+		student = students.FirstOrDefault(s => s.IdStudent == UserService.UserId);
+		group = groups.FirstOrDefault(g => g.IdGroup == student.IdGroup).NameGroup;
+		students.RemoveAll(s => s.IdGroup != student.IdGroup);
+
+	}
+}

@@ -1,0 +1,225 @@
+@page "/reg"
+@inject UserService UserService
+@inject SheduleHubContext context
+@using Microsoft.EntityFrameworkCore;
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SheduleHub вход</title>
+	<link rel="stylesheet" href="css/registration.css">
+	<script src="scripts/script.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="up">
+			<img class="logo" src="./icons/logo.svg" alt="">
+		</div>
+		<div class="down">
+			@if (step == 0)
+			{
+				<div class="window">
+					<p class="enter-text">Регистрация</p>
+					<form class="inputs" method="post" id="form1">
+						<input class="input" type="text" placeholder="Фамилия" @bind-value="Surname">
+						<input class="input" type="text" placeholder="Имя" @bind-value="NameFirst">
+						<input class="input" type="text" placeholder="Отчество" @bind-value="Patronymic">
+						<div сlass="dateBirth">
+							<input class="date" type="date" placeholder="День" @bind-value="BirthDate">
+						</div>
+					</form>
+					@if (NameFirst is null || Surname is null || Patronymic is null)
+					{
+						<div>
+							<button class="button" style="background-color: #3e3e42">Далее</button>
+						</div>
+					}
+					else
+					{
+						<div>
+							<button class="button" @onclick="Step">Далее</button>
+						</div>
+					}
+				</div>
+			}
+			@if (step == 1)
+			{
+				<div class="window2">
+					<p class="enter-text">Регистрация</p>
+					<form class="inputs" method="post" style="gap: 5px" id="form2">
+						<input class="input" type="text" placeholder="Email" @bind-value="Email">
+						<input class="input" type="password" placeholder="Пароль" @bind-value="Password1">
+						<input class="input" type="password" placeholder="Повторите пароль" @bind-value="Password2">
+					</form>
+					@if (students.FirstOrDefault(s => s.Email == Email) is not null)
+					{
+						<div class="forgot">
+							<a>Email занят</a>
+						</div>
+					}
+					else
+					{
+						<div class="forgot">
+							<a></a>
+						</div>
+					}
+					@if (Email is null || Password1 is null || Password2 is null)
+					{
+						<div>
+							<button class="button" style="background-color: #3e3e42">Далее</button>
+						</div>
+					}
+					else
+					{
+						@if (Password1 != Password2)
+						{
+							<div class="forgot">
+								<a>Пароли не совпадают</a>
+							</div>
+							<div>
+								<button class="button2" style="background-color: #3e3e42"><b>Далее</b></button>
+							</div>
+						}
+						else
+						{
+							<div>
+								<button class="button2" @onclick="Step"><b>Далее</b></button>
+							</div>
+						}
+					}
+				</div>
+			}
+			@if (step == 2)
+			{
+				<div class="window3">
+					<p class="enter-text">Регистрация</p>
+					<form class="inputs" method="post" id="form2">
+						<input class="input" type="text" placeholder="Код группы" @bind-value="IdGroup">
+					</form>
+					<div class="create">
+						<a class="blue" @onclick="Step">Cоздать группу</a>
+					</div>
+					<div>
+						@if (IdGroup is null)
+						{
+							<button class="button2" style="background-color: #3e3e42">Присоединиться</button>
+						}
+						else
+						{
+							<a href="/person">
+								<button class="button2" @onclick="CreateStudent">Присоединиться</button>
+							</a>
+						}
+					</div>
+				</div>
+			}
+			@if (step == 3)
+			{
+				<div class="window4">
+					<p class="enter-text">Создание группы</p>
+					<form class="inputs" method="post" id="form2">
+						<input class="input" type="text" placeholder="Название группы" @bind-value="NameGroup">
+						<input class="input" type="text" placeholder="Номер курса" @bind-value="CourseNum">
+						<input class="input" type="text" placeholder="Код специальности" @bind-value="IdSpeciality">
+					</form>
+					<div>
+						@if (NameGroup is null || CourseNum is null || IdSpeciality is null)
+						{
+							<button class="button2" style="background-color: #3e3e42">Создать группу</button>
+						}
+						else
+						{
+							<a href="/person">
+								<button class="button2" @onclick="CreateGroup">Создать группу</button>
+							</a>
+						}
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</body>
+
+
+@code {
+	private int step = 0;
+
+	public void Step()
+	{
+		step++;
+	}
+
+	string ResultException;
+
+
+	List<Student> students = new List<Student>();
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		students = await context.Students.ToListAsync();
+	}
+
+	//Поля для студента
+	string Email { get; set; }
+	string Password1 { get; set; }
+	string Password2 { get; set; }
+	string NameFirst { get; set; }
+	string Surname { get; set; }
+	string Patronymic { get; set; }
+	DateTime? BirthDate { get; set; }
+	int? IdGroup { get; set; }
+
+	public void CreateStudent()
+	{
+
+		students = context.Students.ToList();
+
+		Student student = new Student()
+			{
+				Email = Email,
+				Pssword = Password1,
+				NameFirst = NameFirst,
+				Surname = Surname,
+				Patronymic = Patronymic,
+				BirthDate = (DateTime)BirthDate,
+				IdGroup = IdGroup,
+				IdRole = 1,
+				CreatedAt = DateTime.Now
+			};
+
+		context.Students.Add(student);
+		context.SaveChanges();
+		student.CreatedBy = student.IdStudent;
+		context.Students.Update(student);
+		context.SaveChanges();
+		UserService.UserId = student.IdStudent;
+	}
+
+	//Поля для группы
+	string? NameGroup { get; set; }
+	int? IdSpeciality { get; set; }
+	int? CourseNum { get; set; }
+
+	public void CreateGroup()
+	{
+		CreateStudent();
+		List<Student> students = new List<Student>();
+		students = context.Students.ToList();
+		Student student = students.Last();
+		StudentGroup group = new StudentGroup()
+			{
+				NameGroup = NameGroup,
+				CourseNum = (int)CourseNum,
+				IdSpeciality = (int)IdSpeciality,
+				CreatedBy = UserService.UserId,
+				CreatedAt = DateTime.Now
+			};
+		context.StudentGroups.Add(group);
+		context.SaveChanges();
+		student.IdGroup = group.IdGroup;
+		student.IdRole = 4;
+		context.Students.Update(student);
+		context.SaveChanges();
+	}
+}
